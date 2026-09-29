@@ -1,3 +1,4 @@
+import { Behind } from './components/Behind'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -17,6 +18,7 @@ export default function App() {
         <Hero />
         <Services />
         <Why />
+        <Behind />
         <Industries />
         <Process />
         <Contact />
