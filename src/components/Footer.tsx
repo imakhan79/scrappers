@@ -10,9 +10,9 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs leading-relaxed text-fg-inverse-muted">
-              One point of contact for all your tech needs — built to scale, supported 24/7.
+              Limitless possibilities. One point of contact for all your tech needs, supported 24/7.
             </p>
-            <a href="#contact" className="btn-signal mt-8 group">
+            <a href="#contact" className="btn-brand mt-8 group">
               Start a project
               <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </a>
@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="mt-5 space-y-1">
               {[...nav, { href: '#contact', label: 'Contact' }].map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="inline-flex min-h-10 items-center text-fg-inverse/90 hover:text-signal">
+                  <a href={item.href} className="inline-flex min-h-10 items-center text-fg-inverse/90 hover:text-brand">
                     {item.label}
                   </a>
                 </li>
@@ -36,7 +36,7 @@ export function Footer() {
             <ul className="mt-5 space-y-1">
               {services.map((s) => (
                 <li key={s.id}>
-                  <a href={`#service-${s.id}`} className="inline-flex min-h-10 items-center text-fg-inverse/90 hover:text-signal">
+                  <a href={`#service-${s.id}`} className="inline-flex min-h-10 items-center text-fg-inverse/90 hover:text-brand">
                     {s.label}
                   </a>
                 </li>

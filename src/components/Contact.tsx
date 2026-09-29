@@ -91,17 +91,17 @@ export function Contact() {
   return (
     <section id="contact" className="relative overflow-hidden bg-ink py-24 text-fg-inverse sm:py-32" aria-labelledby="contact-title">
       <div className="blueprint pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_20%_30%,black,transparent_70%)]" />
-      <div className="pointer-events-none absolute top-10 -left-40 size-[34rem] rounded-full bg-signal/10 blur-[120px]" aria-hidden="true" />
+      <div className="pointer-events-none absolute top-10 -left-40 size-[34rem] rounded-full bg-brand/10 blur-[120px]" aria-hidden="true" />
 
       <div className="container-x relative grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div data-reveal>
-          <p className="eyebrow flex items-center gap-3 text-signal">
+          <p className="eyebrow flex items-center gap-3 text-brand">
             <span className="tabular-nums">05</span>
-            <span className="h-px w-8 bg-signal" aria-hidden="true" />
+            <span className="pixel-glyph" aria-hidden="true" />
             Start a project
           </p>
-          <h2 id="contact-title" className="mt-5 text-[clamp(2.4rem,5.5vw,4.25rem)] leading-[1] font-bold">
-            Let’s build something <span className="text-signal">tall.</span>
+          <h2 id="contact-title" className="mt-5 text-h2">
+            Let’s build <span className="text-brand">without limits.</span>
           </h2>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-fg-inverse-muted">
             Tell us where you are and where you want to go. The {BRAND} team will come back to you with next steps.
@@ -109,7 +109,7 @@ export function Contact() {
           <ul className="mt-10 space-y-4">
             {['One point of contact from day one', 'Solutions tailored to your goals', 'Continuous support, 24/7'].map((t) => (
               <li key={t} className="flex items-center gap-3">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-signal/15 text-signal">
+                <span className="grid size-6 shrink-0 place-items-center rounded-xs bg-brand/15 text-brand">
                   <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
                 </span>
                 {t}
@@ -118,10 +118,10 @@ export function Contact() {
           </ul>
         </div>
 
-        <div data-reveal className="rounded-3xl bg-paper p-6 text-fg shadow-2xl shadow-black/40 sm:p-10">
+        <div className="rounded-lg bg-paper p-6 text-fg shadow-[0_30px_60px_-30px_rgb(0_0_0/0.6)] sm:p-10">
           {status === 'success' ? (
             <div ref={successRef} tabIndex={-1} role="status" className="flex min-h-[26rem] flex-col items-start justify-center outline-none">
-              <span className="grid size-14 place-items-center rounded-full bg-signal text-ink">
+              <span className="grid size-14 place-items-center rounded-md bg-brand text-ink">
                 <Check className="size-7" strokeWidth={2.5} aria-hidden="true" />
               </span>
               <h3 className="mt-6 text-3xl font-bold">Thanks — message received.</h3>
@@ -139,7 +139,7 @@ export function Contact() {
                   ref={summaryRef}
                   tabIndex={-1}
                   role="alert"
-                  className="mb-8 rounded-xl border border-red-700/30 bg-red-50 p-4 text-sm text-red-800 outline-none focus-visible:ring-2 focus-visible:ring-red-700"
+                  className="mb-8 rounded-md border border-red-700/30 bg-red-50 p-4 text-sm text-red-800 outline-none focus-visible:ring-2 focus-visible:ring-red-700"
                 >
                   <p className="flex items-center gap-2 font-semibold">
                     <CircleAlert className="size-4" aria-hidden="true" />
@@ -203,7 +203,7 @@ export function Contact() {
               </div>
 
               {status === 'error' && (
-                <p role="alert" className="mt-6 flex items-start gap-2 rounded-xl bg-red-50 p-4 text-sm text-red-800">
+                <p role="alert" className="mt-6 flex items-start gap-2 rounded-md bg-red-50 p-4 text-sm text-red-800">
                   <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                   Something went wrong and your message wasn’t sent. Please try again in a moment.
                 </p>
@@ -211,7 +211,7 @@ export function Contact() {
 
               <div className="mt-8 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <p id="form-note" className="text-sm text-fg-muted">
-                  <span className="text-signal-deep" aria-hidden="true">*</span> Required fields
+                  <span className="text-brand-deep" aria-hidden="true">*</span> Required fields
                 </p>
                 <button type="submit" className="btn-ink group min-w-44" disabled={status === 'submitting'} aria-disabled={status === 'submitting'}>
                   {status === 'submitting' ? (
@@ -266,7 +266,7 @@ function Field({
         <span>
           {label}
           {required && (
-            <span className="ml-0.5 text-signal-deep" aria-hidden="true">
+            <span className="ml-0.5 text-brand-deep" aria-hidden="true">
               *
             </span>
           )}
@@ -279,7 +279,7 @@ function Field({
         required,
         'aria-invalid': error ? true : undefined,
         'aria-describedby': error ? `${fid}-error` : undefined,
-        className: `mt-2 block min-h-12 w-full rounded-xl border bg-white px-4 py-3 text-base text-fg transition-[border-color,box-shadow] outline-none placeholder:text-fg-muted/70 focus:border-ink focus:ring-4 focus:ring-signal/25 ${
+        className: `mt-2 block min-h-12 w-full rounded-md border bg-white px-4 py-3 text-base text-fg transition-[border-color,box-shadow] outline-none placeholder:text-fg-muted/70 focus:border-ink focus:ring-4 focus:ring-brand/25 ${
           error ? 'border-red-700' : 'border-paper-line hover:border-fg/30'
         }`,
       })}

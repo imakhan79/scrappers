@@ -40,7 +40,7 @@ export function Header() {
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-ink"
       >
         Skip to content
       </a>
@@ -55,7 +55,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-fg-inverse-muted transition-colors hover:text-fg-inverse"
+                  className="rounded-sm px-4 py-2 text-sm font-medium text-fg-inverse-muted transition-colors hover:text-fg-inverse"
                 >
                   {item.label}
                 </a>
@@ -65,13 +65,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="#contact" className="btn-signal hidden min-h-10 px-5 text-sm sm:inline-flex">
+          <a href="#contact" className="btn-brand hidden min-h-10 px-5 text-sm sm:inline-flex">
             Start a project
           </a>
           <button
             ref={toggleRef}
             type="button"
-            className="-mr-2 inline-flex size-12 cursor-pointer items-center justify-center rounded-full hover:bg-ink-2 lg:hidden"
+            className="-mr-2 inline-flex size-12 cursor-pointer items-center justify-center rounded-md hover:bg-ink-2 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -102,7 +102,7 @@ export function Header() {
           ))}
         </ul>
         <div className="container-x pb-5 sm:hidden">
-          <a href="#contact" onClick={() => setOpen(false)} className="btn-signal w-full">
+          <a href="#contact" onClick={() => setOpen(false)} className="btn-brand w-full">
             Start a project
           </a>
         </div>

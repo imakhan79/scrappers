@@ -1,38 +1,32 @@
 import type { CSSProperties } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { BRAND, industries, services } from '../content'
-
-// Tower heights (% of skyline) — the tallest (index 3) carries the signal colour.
-const HEIGHTS = [58, 44, 74, 100, 66, 86, 52]
-const SIGNATURE = 3
+import { MARK_BLOCKS } from './Logo'
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-ink text-fg-inverse" aria-labelledby="hero-title">
-      <div className="blueprint pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_70%_40%,black,transparent_75%)]" />
+      <div className="blueprint pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_72%_45%,black,transparent_75%)]" />
       <div
-        className="pointer-events-none absolute top-24 right-[-12%] size-[40rem] rounded-full bg-signal/15 blur-[120px]"
+        className="pointer-events-none absolute top-24 right-[-12%] size-[40rem] rounded-full bg-brand/15 blur-[120px]"
         aria-hidden="true"
       />
 
-      <div className="container-x relative grid items-end gap-14 pt-16 pb-0 sm:pt-24 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pt-28">
-        <div className="pb-4 lg:pb-24">
-          <p className="eyebrow flex items-center gap-3 text-signal">
-            <span className="h-px w-8 bg-signal" aria-hidden="true" />
+      <div className="container-x relative grid items-center gap-12 pt-16 pb-20 sm:pt-24 lg:grid-cols-[1.1fr_1fr] lg:gap-10 lg:pt-28 lg:pb-28">
+        <div>
+          <p className="eyebrow flex items-center gap-3 text-brand">
+            <span className="pixel-glyph" aria-hidden="true" />
             Software development partner
           </p>
-          <h1
-            id="hero-title"
-            className="mt-6 text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] font-bold"
-          >
-            Software, built <span className="text-signal">to scale.</span>
+          <h1 id="hero-title" className="mt-6 text-h1">
+            Limitless possibilities, <span className="text-brand">engineered.</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-fg-inverse-muted sm:text-xl">
             {BRAND} is your single tech partner — from a first MVP to enterprise platforms, data, AI and the cloud
             that keeps it all running.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#contact" className="btn-signal group">
+            <a href="#contact" className="btn-brand group">
               Start a project
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </a>
@@ -58,65 +52,57 @@ export function Hero() {
           </dl>
         </div>
 
-        <Skyline />
+        <Emblem />
       </div>
     </section>
   )
 }
 
-function Skyline() {
+/** The logo badge, rebuilt as a live emblem: the S assembles block by block inside a slowly turning ring. */
+function Emblem() {
   return (
-    <div className="relative">
-      <p className="eyebrow mb-4 hidden text-fg-inverse-muted sm:block">
-        What we build <span className="text-signal">/</span> select a tower
-      </p>
-      <ul className="flex h-[300px] items-end gap-1.5 sm:h-[400px] sm:gap-2.5 lg:h-[460px]" aria-label="Our services">
-        {services.map((s, i) => {
-          const signature = i === SIGNATURE
-          return (
-            <li key={s.id} className="flex h-full flex-1 flex-col justify-end">
-              <a
-                href={`#service-${s.id}`}
-                aria-label={s.title}
-                style={{ height: `${HEIGHTS[i]}%`, '--i': i } as CSSProperties}
-                className={`tower group relative block w-full rounded-t-[3px] transition-colors duration-300 focus-visible:outline-offset-4 ${
-                  signature ? '[--t:var(--color-signal)]' : '[--t:#1b2233] hover:[--t:#2a3350]'
-                }`}
-              >
-                {/* Tower body with a window grid */}
-                <span
-                  className="absolute inset-0 rounded-t-[3px] transition-[background-color] duration-300"
-                  style={{
-                    backgroundColor: 'var(--t)',
-                    backgroundImage: `repeating-linear-gradient(to right, var(--t) 0 7px, transparent 7px 15px),
-                      repeating-linear-gradient(to bottom, ${signature ? 'rgb(11 14 20 / .28)' : 'rgb(244 241 234 / .10)'} 0 5px, var(--t) 5px 14px)`,
-                    backgroundPosition: '4px 12px',
-                  }}
-                  aria-hidden="true"
-                />
-                {signature && (
-                  <span className="absolute -top-10 left-1/2 h-10 w-0.5 -translate-x-1/2 bg-signal" aria-hidden="true">
-                    <span className="absolute -top-1 left-1/2 size-2 -translate-x-1/2 animate-pulse rounded-full bg-signal" />
-                  </span>
-                )}
-                <span className="absolute inset-x-0 top-0 h-0.5 bg-signal opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" />
-              </a>
-            </li>
-          )
-        })}
-      </ul>
-      {/* Ground line with labels */}
-      <div className="border-t border-fg-inverse-muted/40">
-        <ol className="hidden gap-2.5 pt-3 pb-8 sm:flex" aria-hidden="true">
-          {services.map((s, i) => (
-            <li key={s.id} className="flex-1 font-mono text-[0.68rem] leading-tight text-fg-inverse-muted">
-              <span className="block text-signal">{String(i + 1).padStart(2, '0')}</span>
-              {s.short}
-            </li>
-          ))}
-        </ol>
-        <div className="h-8 sm:hidden" />
-      </div>
+    <div className="relative mx-auto aspect-square w-full max-w-[26rem] lg:max-w-[32rem]" aria-hidden="true">
+      {/* Concentric guides */}
+      <div className="absolute inset-0 rounded-full border border-ink-line" />
+      <div className="absolute inset-[14%] rounded-full border border-ink-line/70 bg-ink-2/60" />
+
+      {/* Rotating ring text — name in white, tagline in teal, as on the badge. Length = 2πr so it closes seamlessly. */}
+      <svg viewBox="0 0 400 400" className="emblem-ring absolute inset-0 size-full">
+        <defs>
+          <path id="ring-path" d="M200,200 m-172,0 a172,172 0 1,1 344,0 a172,172 0 1,1 -344,0" />
+        </defs>
+        <text className="font-display text-[21px] font-semibold uppercase">
+          <textPath href="#ring-path" textLength="1080" lengthAdjust="spacing">
+            <tspan className="fill-fg-inverse">{BRAND}</tspan>
+            <tspan className="fill-brand">{'  •  Limitless possibilities  •  '}</tspan>
+          </textPath>
+        </text>
+      </svg>
+
+      {/* The S, block by block */}
+      <svg viewBox="0 0 53 75" className="absolute top-1/2 left-1/2 h-[34%] w-auto -translate-x-1/2 -translate-y-1/2 overflow-visible">
+        {MARK_BLOCKS.map(([x, y, w, h], i) => (
+          <rect
+            key={`${x}-${y}`}
+            x={x}
+            y={y}
+            width={w}
+            height={h}
+            className="block-in fill-brand"
+            style={{ '--i': i } as CSSProperties}
+          />
+        ))}
+      </svg>
+
+      {/* Corner ticks, like a viewfinder */}
+      {[
+        'top-0 left-0 border-t border-l',
+        'top-0 right-0 border-t border-r',
+        'bottom-0 left-0 border-b border-l',
+        'bottom-0 right-0 border-b border-r',
+      ].map((pos) => (
+        <span key={pos} className={`absolute size-5 border-brand/60 ${pos}`} />
+      ))}
     </div>
   )
 }

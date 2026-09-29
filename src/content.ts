@@ -31,7 +31,6 @@ export const BRAND = 'Scraperrs'
 export type Service = {
   id: string
   title: string
-  short: string // skyline label
   label: string // footer / compact lists
   body: string
   tags: string[]
@@ -42,7 +41,6 @@ export const services: Service[] = [
   {
     id: 'custom-development',
     title: 'Custom software & web development',
-    short: 'Custom dev',
     label: 'Custom development',
     body: 'Software and web platforms built around your specific goals — not squeezed into someone else’s template.',
     tags: ['Web apps', 'APIs', 'Integrations'],
@@ -51,7 +49,6 @@ export const services: Service[] = [
   {
     id: 'staff-augmentation',
     title: 'Staff augmentation',
-    short: 'Staff aug',
     label: 'Staff augmentation',
     body: 'Scale your tech team quickly with engineers who plug into your process, tools and rituals from week one.',
     tags: ['Dedicated engineers', 'Flexible scale'],
@@ -60,7 +57,6 @@ export const services: Service[] = [
   {
     id: 'mvp',
     title: 'MVP creation',
-    short: 'MVP',
     label: 'MVP creation',
     body: 'Turn an idea into a working minimum viable product fast, so you can test with real users before you over-invest.',
     tags: ['Prototypes', 'Launch-ready v1'],
@@ -69,7 +65,6 @@ export const services: Service[] = [
   {
     id: 'enterprise',
     title: 'Enterprise CRM & ERP solutions',
-    short: 'CRM & ERP',
     label: 'CRM & ERP',
     body: 'CRM and ERP systems that streamline large operations and give every department one source of truth.',
     tags: ['CRM', 'ERP', 'Workflow automation'],
@@ -78,7 +73,6 @@ export const services: Service[] = [
   {
     id: 'ecommerce',
     title: 'E-commerce & retail tech',
-    short: 'E-commerce',
     label: 'E-commerce & retail',
     body: 'Technology that boosts performance online and in-store, from storefronts to inventory and checkout.',
     tags: ['Storefronts', 'Omnichannel', 'Payments'],
@@ -87,7 +81,6 @@ export const services: Service[] = [
   {
     id: 'data-ai',
     title: 'Data analytics, AI & machine learning',
-    short: 'Data & AI',
     label: 'Data, AI & ML',
     body: 'Turn raw data into action with analytics, dashboards and machine-learning models that earn their keep.',
     tags: ['Analytics', 'AI', 'Machine learning'],
@@ -96,7 +89,6 @@ export const services: Service[] = [
   {
     id: 'cloud-devops-qa',
     title: 'Cloud, DevOps & quality assurance',
-    short: 'Cloud & QA',
     label: 'Cloud, DevOps & QA',
     body: 'Cloud infrastructure, delivery pipelines and QA that keep everything running smoothly — release after release.',
     tags: ['Cloud', 'CI/CD', 'Testing'],

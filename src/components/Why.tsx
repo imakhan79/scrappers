@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { BRAND, reasons } from '../content'
 import { SectionHeading } from './SectionHeading'
 
@@ -22,19 +21,13 @@ export function Why() {
             return (
               <li
                 key={r.title}
-                data-reveal
-                style={{ '--i': i } as CSSProperties}
-                className="group relative bg-ink px-1 py-10 sm:px-8"
+                className="pixel-corner group relative bg-ink px-1 py-10 [--pc:var(--color-ink-line)] hover:[--pc:var(--color-brand)] sm:px-8"
               >
-                <span
-                  className="absolute top-0 left-0 h-0.5 w-0 bg-signal transition-[width] duration-500 ease-out-expo group-hover:w-full"
-                  aria-hidden="true"
-                />
                 <div className="flex items-center justify-between">
-                  <Icon className="size-7 text-signal" strokeWidth={1.5} aria-hidden="true" />
+                  <Icon className="size-7 text-brand" strokeWidth={1.5} aria-hidden="true" />
                   <span className="font-mono text-sm text-fg-inverse-muted tabular-nums">0{i + 1}</span>
                 </div>
-                <h3 className="mt-10 text-2xl leading-tight font-semibold">{r.title}</h3>
+                <h3 className="mt-10 text-h3">{r.title}</h3>
                 <p className="mt-3 leading-relaxed text-fg-inverse-muted">{r.body}</p>
               </li>
             )

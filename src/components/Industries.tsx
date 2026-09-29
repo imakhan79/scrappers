@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { industries } from '../content'
 import { SectionHeading } from './SectionHeading'
 
@@ -20,12 +19,10 @@ export function Industries() {
             return (
               <li
                 key={ind.name}
-                data-reveal
-                style={{ '--i': i % 3 } as CSSProperties}
-                className="group relative flex items-center gap-5 border-r border-b border-paper-line px-6 py-7 transition-colors duration-300 hover:bg-white/70 sm:px-8 sm:py-9"
+                className="relative flex items-center gap-5 border-r border-b border-paper-line px-6 py-7 transition-colors duration-300 hover:bg-white/70 sm:px-8 sm:py-9"
               >
                 <Icon
-                  className="size-7 shrink-0 text-signal-deep"
+                  className="size-7 shrink-0 text-brand-deep"
                   strokeWidth={1.5}
                   aria-hidden="true"
                 />

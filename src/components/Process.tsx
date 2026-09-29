@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { process } from '../content'
 import { SectionHeading } from './SectionHeading'
 
@@ -25,14 +24,14 @@ export function Process() {
           {process.map((step, i) => {
             const Icon = step.icon
             return (
-              <li key={step.title} data-reveal style={{ '--i': i } as CSSProperties} className="relative">
-                <span className="relative grid size-12 place-items-center rounded-full border border-paper-line bg-paper text-fg">
+              <li key={step.title} className="relative">
+                <span className="relative grid size-12 place-items-center rounded-sm border border-paper-line bg-white text-brand-deep shadow-card">
                   <Icon className="size-5" strokeWidth={1.75} aria-hidden="true" />
                 </span>
-                <p className="mt-6 font-mono text-xs tracking-[0.14em] text-signal-deep uppercase">
+                <p className="mt-6 font-mono text-xs tracking-[0.14em] text-brand-deep uppercase">
                   Step {String(i + 1).padStart(2, '0')}
                 </p>
-                <h3 className="mt-2 text-2xl font-semibold">{step.title}</h3>
+                <h3 className="mt-2 text-h3">{step.title}</h3>
                 <p className="mt-3 leading-relaxed text-fg-muted">{step.body}</p>
               </li>
             )

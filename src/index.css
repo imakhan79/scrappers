@@ -1,28 +1,40 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/inter';
-@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/oxanium';
 @import '@fontsource-variable/jetbrains-mono';
 
 @theme {
-  /* Brand palette — ink & paper with a single safety-orange signal */
-  --color-ink: #0b0e14;
-  --color-ink-2: #121724;
-  --color-ink-line: #232a3a;
-  --color-paper: #f4f1ea;
-  --color-paper-2: #ebe6db;
-  --color-paper-line: #d8d0c0;
-  --color-signal: #ff5a1f; /* fills, large text, and on-ink text */
-  --color-signal-deep: #b3390b; /* small text on paper (5.2:1) */
+  /* Brand palette — taken from the Scraperrs logo: teal mark, near-black type, white field */
+  --color-ink: #081112;
+  --color-ink-2: #0f1c1d;
+  --color-ink-line: #1f3133;
+  --color-paper: #f2f7f7;
+  --color-paper-2: #e4eeee;
+  --color-paper-line: #cbdada;
+  --color-brand: #30c1be; /* logo teal — fills, and text on ink (8.6:1) */
+  --color-brand-bright: #5ad3d0; /* hover on brand fills */
+  --color-brand-deep: #0b6e6a; /* text & icons on paper (5.6:1) */
+  --color-brand-shade: #145954; /* logo's dark teal */
 
   /* Semantic text tokens */
-  --color-fg: #14171f;
-  --color-fg-muted: #545a66; /* 6.4:1 on paper */
-  --color-fg-inverse: #f4f1ea;
-  --color-fg-inverse-muted: #a3a9b6; /* 8:1 on ink */
+  --color-fg: #0f1a1b;
+  --color-fg-muted: #4e5c5e; /* 6.4:1 on paper */
+  --color-fg-inverse: #f2f7f7;
+  --color-fg-inverse-muted: #9fb0b1; /* 8.5:1 on ink */
 
-  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Oxanium Variable', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  /* Shape — the logo is built from sharp blocks, so corners stay tight */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* Elevation — two quiet levels, tinted with ink rather than pure black */
+  --shadow-card: 0 1px 2px rgb(8 17 18 / 0.05), 0 0 0 1px rgb(8 17 18 / 0.02);
+  --shadow-lift: 0 18px 36px -22px rgb(8 17 18 / 0.4), 0 2px 6px -2px rgb(8 17 18 / 0.08);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -42,18 +54,18 @@
   h3 {
     @apply font-display;
     text-wrap: balance;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
   p {
     text-wrap: pretty;
   }
   :focus-visible {
-    outline: 2px solid var(--color-signal);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
     border-radius: 4px;
   }
   ::selection {
-    background: var(--color-signal);
+    background: var(--color-brand);
     color: var(--color-ink);
   }
   button,
@@ -70,17 +82,86 @@
 @utility eyebrow {
   @apply font-mono text-xs font-medium tracking-[0.18em] uppercase;
 }
+/* ---- Type scale ------------------------------------------------------ */
+@utility text-h1 {
+  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.028em;
+  font-weight: 700;
+  max-width: 15ch;
+}
+@utility text-h2 {
+  font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  max-width: 20ch;
+}
+@utility text-h3 {
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+  @media (width >= 40rem) {
+    font-size: 1.625rem;
+  }
+}
+@utility text-lede {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  max-width: 34rem;
+}
+
+/* ---- Buttons ---------------------------------------------------------
+   Primary on dark: btn-brand · Primary on light: btn-ink
+   Secondary on dark: btn-ghost-inverse · Secondary on light: btn-outline */
 @utility btn {
-  @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-semibold transition-[background-color,color,box-shadow,transform] duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-md px-6 text-[0.95rem] font-semibold tracking-[0.005em] transition-[background-color,color,box-shadow,transform] duration-200 enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:saturate-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50;
 }
-@utility btn-signal {
-  @apply btn bg-signal text-ink hover:bg-[#ff7440];
-}
-@utility btn-ghost-inverse {
-  @apply btn text-fg-inverse ring-1 ring-ink-line ring-inset hover:bg-ink-2 hover:ring-fg-inverse-muted;
+@utility btn-brand {
+  @apply btn bg-brand text-ink shadow-[inset_0_-2px_0_rgb(8_17_18/0.18)] hover:bg-brand-bright disabled:hover:bg-brand;
 }
 @utility btn-ink {
-  @apply btn bg-ink text-fg-inverse hover:bg-ink-2;
+  @apply btn bg-ink text-fg-inverse shadow-[inset_0_-2px_0_rgb(48_193_190/0.35)] hover:bg-ink-2 disabled:hover:bg-ink;
+}
+@utility btn-ghost-inverse {
+  @apply btn text-fg-inverse ring-1 ring-ink-line ring-inset hover:bg-ink-2 hover:ring-brand/60;
+}
+@utility btn-outline {
+  @apply btn text-fg ring-1 ring-paper-line ring-inset hover:bg-white hover:ring-fg/40;
+}
+
+/* ---- Logo-derived details -------------------------------------------- */
+/* A stepped three-block corner, cut from the S. Colour via --pc. */
+@utility pixel-corner {
+  --pc: var(--color-paper-line);
+  &::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--pc), var(--pc)) 12px 0 / 6px 6px no-repeat,
+      linear-gradient(var(--pc), var(--pc)) 12px 6px / 6px 6px no-repeat,
+      linear-gradient(var(--pc), var(--pc)) 12px 12px / 6px 6px no-repeat,
+      linear-gradient(var(--pc), var(--pc)) 6px 12px / 6px 6px no-repeat,
+      linear-gradient(var(--pc), var(--pc)) 0 12px / 6px 6px no-repeat;
+    transition: background 300ms;
+  }
+}
+/* Tiny stair glyph used as the eyebrow marker */
+@utility pixel-glyph {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  flex-shrink: 0;
+  background:
+    linear-gradient(currentColor, currentColor) 0 6px / 4px 4px no-repeat,
+    linear-gradient(currentColor, currentColor) 5px 3px / 4px 4px no-repeat,
+    linear-gradient(currentColor, currentColor) 10px 0 / 4px 4px no-repeat;
 }
 
 /* Blueprint grid used behind dark / tinted sections */
@@ -92,8 +173,8 @@
 }
 @utility blueprint-light {
   background-image:
-    linear-gradient(to right, rgb(20 23 31 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(20 23 31 / 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgb(8 17 18 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(8 17 18 / 0.055) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
@@ -111,25 +192,39 @@
   transform: none;
 }
 
-/* Skyline towers rise on load */
-@keyframes rise {
+/* Hero emblem: the S assembles block by block, the ring turns slowly */
+@keyframes block-in {
   from {
-    transform: scaleY(0);
+    opacity: 0;
+    transform: translateY(-14px) scale(0.6);
   }
   to {
-    transform: scaleY(1);
+    opacity: 1;
+    transform: none;
   }
 }
-.tower {
-  transform-origin: bottom;
+.block-in {
   transform-box: fill-box;
-  animation: rise 1100ms var(--ease-out-expo) both;
-  animation-delay: calc(var(--i, 0) * 90ms + 150ms);
+  transform-origin: center;
+  animation: block-in 700ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 110ms + 200ms);
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.emblem-ring {
+  animation: spin 60s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  /* Continuous motion stops entirely (the 1ms rule below would make it spin frantically) */
+  .emblem-ring {
+    animation: none !important;
   }
   *,
   *::before,

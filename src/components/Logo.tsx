@@ -1,18 +1,31 @@
 import { BRAND } from '../content'
 
-/**
- * PLACEHOLDER wordmark — replace with the official Scraperrs logo file when supplied.
- * Keep the accessible name ("Scraperrs") when swapping in the real asset.
- */
+/** The Scraperrs "S" mark, redrawn as vector from the official logo (7 blocks on a 53×75 grid). */
+export const MARK_BLOCKS = [
+  [11, 0, 30, 12],
+  [29, 12, 12, 12],
+  [0, 12, 11, 22],
+  [0, 34, 53, 10],
+  [41, 44, 12, 20],
+  [6, 52, 11, 12],
+  [6, 64, 35, 11],
+] as const
+
+export function Mark({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 53 75" className={className} fill="currentColor" aria-hidden="true">
+      {MARK_BLOCKS.map(([x, y, w, h]) => (
+        <rect key={`${x}-${y}`} x={x} y={y} width={w} height={h} />
+      ))}
+    </svg>
+  )
+}
+
 export function Logo({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <svg viewBox="0 0 24 24" className="size-7 shrink-0" aria-hidden="true">
-        <rect x="2" y="11" width="5" height="11" rx="0.5" fill="currentColor" opacity="0.55" />
-        <rect x="9.5" y="2" width="5" height="20" rx="0.5" fill="var(--color-signal)" />
-        <rect x="17" y="7" width="5" height="15" rx="0.5" fill="currentColor" opacity="0.8" />
-      </svg>
-      <span className="font-display text-[1.35rem] leading-none font-bold tracking-tight">{BRAND}</span>
+      <Mark className="h-7 w-auto shrink-0 text-brand" />
+      <span className="font-display text-[1.4rem] leading-none font-bold tracking-tight">{BRAND}</span>
     </span>
   )
 }
